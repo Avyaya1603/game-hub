@@ -37,7 +37,6 @@ const useGames = () => {
       .get<ResponseDataSchema>("/games", { signal: controller.signal })
       .then((response) => {
         setGames(response.data.results);
-        console.log(response.data.results[0].parent_platforms);
         SetLoading(false);
       })
       .catch((err) => {
