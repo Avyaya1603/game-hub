@@ -15,13 +15,13 @@ import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "../services/getCroppedImageUrl";
 
 interface Props {
-  game: Game;
+  game: Game; 
   isLoaded: boolean;
 }
 
 const GameCard = ({ game, isLoaded }: Props) => {
   return (
-    <Card width="300px" borderRadius="10px" overflow="hidden">
+    <Card>
       <Skeleton isLoaded={isLoaded}>
         <Image src={getCroppedImageUrl(game.background_image)}></Image>
       </Skeleton>
