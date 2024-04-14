@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-import { AxiosError, CanceledError } from "axios";
+import useData from "./useData";
 
 export interface Platform {
   id: number;
@@ -20,40 +18,8 @@ export interface Game {
   metacritic: number;
 }
 
-interface ResponseDataSchema {
-  count: number;
-  results: Game[];
-}
-
 const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState<string>("");
-  const [isLoading, SetLoading] = useState(false);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    SetLoading(true);
-    apiClient
-      .get<ResponseDataSchema>("/games", { signal: controller.signal })
-      .then((response) => {
-        setGames(response.data.results);
-        SetLoading(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError((err as AxiosError).message);
-        SetLoading(false);
-      });
-    // .finally(() => {
-    //   SetLoading(false);
-    // });
-
-    return () => {
-      controller.abort();
-    };
-  }, []);
-
-  return { games, setGames, error, setError, isLoading };
+  return useData<Game>("/games");
 };
 
 export default useGames;
