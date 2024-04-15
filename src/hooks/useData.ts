@@ -16,9 +16,10 @@ export interface Game {
   metacritic: number;
 }
 
-interface Genre {
+export interface Genre {
   id: number;
   name: string;
+  image_background: string;
 }
 
 interface ResponseDataSchema<T> {
