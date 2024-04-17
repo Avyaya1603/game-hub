@@ -1,4 +1,4 @@
-import useData, { Game, Genre } from "./useData";
+import useData, { Game, Genre, Platform } from "./useData";
 
 // export interface Platform {
 //   id: number;
@@ -18,10 +18,20 @@ import useData, { Game, Genre } from "./useData";
 //   metacritic: number;
 // }
 
-const useGames = (selectedGenre: Genre | null) => {
-  return useData<Game>("/games", { params: { genres: selectedGenre?.id } }, [
-    selectedGenre?.id,
-  ]);
+const useGames = (
+  selectedGenre: Genre | null,
+  selectedPlatform: Platform | null
+) => {
+  return useData<Game>(
+    "/games",
+    {
+      params: {
+        genres: selectedGenre?.id,
+        parent_platforms: selectedPlatform?.id,
+      },
+    },
+    [selectedGenre?.id, selectedPlatform?.id]
+  );
 };
 
 export default useGames;

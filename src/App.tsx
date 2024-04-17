@@ -3,15 +3,22 @@ import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenresList from "./components/GenresList";
 import { useState } from "react";
-import { Genre } from "./hooks/useData";
+import { Genre, Platform } from "./hooks/useData";
 import PlatformSelector from "./components/platformSelector";
 
 function App() {
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null
+  );
   const [selectedGenre, SetSelectedGenre] = useState<Genre | null>(null);
 
   const handleClick = (genre: Genre) => {
     SetSelectedGenre({ ...genre });
-    console.log("genreId: ", genre.id);
+    console.log("Selected Genre: ", genre.name);
+  };
+  const handleMenuSelection = (platform: Platform) => {
+    setSelectedPlatform({ ...platform });
+    console.log("Selected Plaform: ", platform.name);
   };
 
   return (
@@ -36,8 +43,14 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        <PlatformSelector></PlatformSelector>
-        <GameGrid selectedGenre={selectedGenre}></GameGrid>
+        <PlatformSelector
+          selectedPlatform={selectedPlatform}
+          handleMenuSelection={handleMenuSelection}
+        ></PlatformSelector>
+        <GameGrid
+          selectedGenre={selectedGenre}
+          selectedPlatform={selectedPlatform}
+        ></GameGrid>
       </GridItem>
     </Grid>
   );
