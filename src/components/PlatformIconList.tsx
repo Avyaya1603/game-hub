@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform } from "../hooks/useGames";
+import { Platform } from "../hooks/useData";
 import { RiXboxLine } from "react-icons/ri";
 import {
   FaWindows,
@@ -16,7 +16,7 @@ import { Badge, Flex, HStack, Icon, Text } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 
 interface Props {
-  platforms: Platform[];
+  platforms: Platform[] | undefined;
 }
 
 const PlatformIconList = ({ platforms }: Props) => {
@@ -34,7 +34,7 @@ const PlatformIconList = ({ platforms }: Props) => {
 
   return (
     <HStack marginY={1}>
-      {platforms.map((platform) => (
+      {platforms?.map((platform) => (
         <Icon key={platform.id} as={iconMap[platform.slug]} color="grey.300" />
       ))}
     </HStack>
