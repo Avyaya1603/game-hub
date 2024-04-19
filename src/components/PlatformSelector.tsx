@@ -14,7 +14,7 @@ const PlatformSelector = ({ handleMenuSelection, selectedPlatform }: Props) => {
 
   if (error) return null;
   return (
-    <Box margin={2}>
+    <Box>
       <Menu>
         <MenuButton as={Button} rightIcon={<FaChevronDown />}>
           {/* {selectedPlatform !== null ? selectedPlatform?.name : "Platforms"} */}
