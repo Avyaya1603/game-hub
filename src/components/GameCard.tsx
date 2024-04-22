@@ -14,6 +14,8 @@ import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "../services/getCroppedImageUrl";
 import Emojis from "./Emojis";
+import { transform } from "framer-motion";
+import "./GameCard.css";
 
 interface Props {
   game: Game;
@@ -22,7 +24,7 @@ interface Props {
 
 const GameCard = ({ game, isLoaded }: Props) => {
   return (
-    <Card>
+    <Card className="GameGridItem">
       <Image src={getCroppedImageUrl(game.background_image)}></Image>
       <CardBody>
         <HStack justifyContent="space-between" marginBottom={3}>
